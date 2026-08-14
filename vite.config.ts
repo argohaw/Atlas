@@ -2,6 +2,7 @@ import { defineConfig, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import fs from 'fs'
 import path from 'path'
+import pkg from './package.json' with { type: 'json' };
 
 interface ManifestEntry {
   name: string
@@ -73,5 +74,8 @@ export default defineConfig({
   base: '/Atlas/',
   build: {
     chunkSizeWarningLimit: 600,
+  },
+  define: {
+    __APP_VERSION__: JSON.stringify(pkg.version),
   },
 })
