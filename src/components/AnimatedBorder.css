@@ -1,0 +1,47 @@
+.anim-border-wrap {
+  position: relative;
+  border-radius: 11px;
+  padding: 1.5px;
+  background: var(--border);
+  transition: background 0.3s;
+}
+
+.anim-border-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: conic-gradient(
+    from var(--angle, 0deg),
+    #4285F4,
+    #EA4335,
+    #C9A84C,
+    #34A853,
+    #4285F4
+  );
+  opacity: 0;
+  transition: opacity 0.3s;
+  animation: spin-border 3s linear infinite;
+}
+
+.anim-border-active::before {
+  opacity: 1;
+}
+
+.anim-border-inner {
+  position: relative;
+  border-radius: 10px;
+  background: var(--search-bg);
+  overflow: hidden;
+  z-index: 1;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes spin-border {
+  to { --angle: 360deg; }
+}

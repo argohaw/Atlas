@@ -1,0 +1,113 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Design Tokens ─────────────────────────────────────────── */
+:root {
+  /* Palette */
+  --gold:          #C9A84C;
+  --gold-light:    #F0D080;
+  --silver:        #A8B2C0;
+  --silver-light:  #D0D8E4;
+  --neon-green:    #00F5A0;
+  --neon-blue:     #00D9F5;
+  --neon-red:      #FF3B5C;
+  --accent-blue:   #1A73E8;
+  --accent-blue-glow: rgba(26,115,232,0.18);
+
+  /* Scrollbar */
+  scrollbar-width: thin;
+}
+
+/* ── Dark Theme (default) ──────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:          #0a0a0a;
+  --bg-surface:       #111111;
+  --bg-sidebar:       #0d0d0d;
+  --surface-elevated: #161616;
+  --surface-hover:    #1c1c1c;
+  --border:           #222222;
+  --border-subtle:    #1a1a1a;
+
+  --text-primary:     #F0EDE6;   /* ivory-white */
+  --text-secondary:   #A0A0A0;
+  --text-muted:       #555555;
+
+  --search-bg:        #161616;
+  --search-border:    #2a2a2a;
+
+  --link-color:       #4DA3FF;
+  --code-inline-bg:   #1a1a1a;
+  --code-inline-fg:   #FF6B8A;
+  --pre-bg:           #0f0f0f;
+  --pre-border:       #222222;
+  --pre-code-color:   #e0e0e0;
+  --table-head-bg:    #111111;
+  --blockquote-color: #888888;
+
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6), 0 2px 8px rgba(0,0,0,0.4);
+
+  --logo-text:        #F0EDE6;
+  --tag-bg:           rgba(0,245,160,0.08);
+  --tag-color:        var(--neon-green);
+
+  scrollbar-color: #2a2a2a transparent;
+}
+
+/* ── Light Theme ───────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg-base:          #F8F6F1;   /* warm ivory */
+  --bg-surface:       #FFFFFF;
+  --bg-sidebar:       #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-hover:    #F0EDE6;
+  --border:           #E2DDD6;
+  --border-subtle:    #EDE9E2;
+
+  --text-primary:     #1A1A1A;
+  --text-secondary:   #555555;
+  --text-muted:       #999999;
+
+  --search-bg:        #F0EDE6;
+  --search-border:    #D8D3CA;
+
+  --link-color:       #1A73E8;
+  --code-inline-bg:   #F0EDE6;
+  --code-inline-fg:   #C0392B;
+  --pre-bg:           #F5F2EC;
+  --pre-border:       #D8D3CA;
+  --pre-code-color:   #1A1A1A;
+  --table-head-bg:    #F5F2EC;
+  --blockquote-color: #777777;
+
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.06);
+
+  --logo-text:        #1A1A1A;
+  --tag-bg:           rgba(26,115,232,0.08);
+  --tag-color:        var(--accent-blue);
+
+  scrollbar-color: #D0C8BC transparent;
+}
+
+/* ── Base ──────────────────────────────────────────────────── */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: "Google Sans", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: var(--bg-base);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background 0.25s, color 0.25s;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
