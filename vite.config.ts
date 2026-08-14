@@ -4,7 +4,7 @@ import fs from 'fs'
 import path from 'path'
 
 function filesManifestPlugin(): Plugin {
-  const filesDir = path.resolve(import.meta.dirname, 'public/files')
+  const filesDir = path.resolve(process.cwd(), 'public/files')
   const manifestPath = path.join(filesDir, 'files.json')
 
   function generate() {
