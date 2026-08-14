@@ -1,20 +1,65 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import type { DocFile } from "../types";
+import type { DocFile, DocGroup } from "../types";
 import AtlasLogo from "./AtlasLogo";
 import SearchBar from "./SearchBar";
 import { useTheme } from "../context/ThemeContext";
 import "./MobileNav.css";
 
 interface Props {
-  files: DocFile[];
-  currentLabel?: string;
+  groups: DocGroup[];
   query: string;
   setQuery: (q: string) => void;
   results: { file: DocFile; excerpt: string }[];
 }
 
-export default function MobileNav({ files, currentLabel, query, setQuery, results }: Props) {
+function MobileGroupSection({ group, onClose }: { group: DocGroup; onClose: () => void }) {
+  const [open, setOpen] = useState(false);
+  const isFolder = group.name !== "";
+
+  return (
+    <div className="drawer-group">
+      {isFolder ? (
+        <button className="drawer-group-header" onClick={() => setOpen((o) => !o)}>
+          <svg className={`drawer-group-chevron${open ? " open" : ""}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>{group.label}</span>
+          <span className="drawer-group-count">{group.files.length}</span>
+        </button>
+      ) : (
+        <p className="drawer-section-label">{group.label}</p>
+      )}
+
+      {open && (
+        <div className={isFolder ? "drawer-group-files" : ""}>
+          {group.files.map((f) => (
+            <NavLink
+              key={f.slug}
+              to={`/doc/${f.slug}`}
+              className={({ isActive }) => `drawer-link${isActive ? " active" : ""}`}
+              onClick={onClose}
+            >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                <polyline points="14 2 14 8 20 8"/>
+              </svg>
+              <span className="drawer-link-label">{f.label}</span>
+              {f.tags.length > 0 && (
+                <span className="drawer-link-tag">{f.tags[0]}</span>
+              )}
+            </NavLink>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function MobileNav({ groups, query, setQuery, results }: Props) {
   const [open, setOpen] = useState(false);
   const { theme, toggle } = useTheme();
 
@@ -28,13 +73,10 @@ export default function MobileNav({ files, currentLabel, query, setQuery, result
             <line x1="3" y1="18" x2="21" y2="18"/>
           </svg>
         </button>
-
         <div className="mobile-brand">
           <AtlasLogo size={26} />
           <span className="mobile-logo-name">Atlas</span>
-          {currentLabel && <span className="mobile-current">/ {currentLabel}</span>}
         </div>
-
         <button className="mobile-theme-btn" onClick={toggle} aria-label="Toggle theme">
           {theme === "dark" ? (
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -74,20 +116,8 @@ export default function MobileNav({ files, currentLabel, query, setQuery, result
             </div>
 
             <div className="drawer-links">
-              <p className="drawer-section-label">Documents</p>
-              {files.map((f) => (
-                <NavLink
-                  key={f.slug}
-                  to={`/doc/${f.slug}`}
-                  className={({ isActive }) => `drawer-link${isActive ? " active" : ""}`}
-                  onClick={() => setOpen(false)}
-                >
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                    <polyline points="14 2 14 8 20 8"/>
-                  </svg>
-                  {f.label}
-                </NavLink>
+              {groups.map((g) => (
+                <MobileGroupSection key={g.name || "__root__"} group={g} onClose={() => setOpen(false)} />
               ))}
             </div>
           </nav>

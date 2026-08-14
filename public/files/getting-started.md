@@ -1,3 +1,6 @@
+---
+tags: [guide, setup]
+---
 # Getting Started
 
 Welcome to **Atlas** — a clean, fast markdown viewer built with React and TypeScript.

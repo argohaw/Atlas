@@ -6,45 +6,38 @@ import { useFiles } from "./hooks/useFiles";
 import { useSearch } from "./hooks/useSearch";
 import "./App.css";
 
-function DocPage() {
-  const { slug } = useParams<{ slug: string }>();
-  return <MarkdownViewer slug={slug ?? ""} key={slug} />;
+function DocPage({ files }: { files: ReturnType<typeof useFiles>["files"] }) {
+  const { "*": slug } = useParams();
+  const file = files.find((f) => f.slug === slug);
+  return <MarkdownViewer slug={slug ?? ""} tags={file?.tags} key={slug} />;
 }
 
 export default function App() {
-  const { files, loading } = useFiles();
+  const { files, groups, loading } = useFiles();
   const { query, setQuery, results } = useSearch(files);
-  const firstSlug = files[0]?.slug;
-
   const searchProps = { query, setQuery, results };
 
   return (
     <div className="app">
       <div className="desktop-only">
-        <Sidebar files={files} {...searchProps} />
+        <Sidebar groups={groups} {...searchProps} />
       </div>
 
       <div className="main-area">
         <div className="mobile-only">
-          <MobileNav files={files} {...searchProps} />
+          <MobileNav groups={groups} {...searchProps} />
         </div>
 
         <div className="content">
           {loading ? (
-            <div className="app-loading">
-              <div className="spinner-lg" />
-            </div>
+            <div className="app-loading"><div className="spinner-lg" /></div>
           ) : (
             <Routes>
               <Route
                 path="/"
-                element={
-                  firstSlug
-                    ? <Navigate to={`/doc/${firstSlug}`} replace />
-                    : <div className="empty-state">No documents found.</div>
-                }
+                element={<Navigate to="/doc/getting-started" replace />}
               />
-              <Route path="/doc/:slug" element={<DocPage />} />
+              <Route path="/doc/*" element={<DocPage files={files} />} />
             </Routes>
           )}
         </div>

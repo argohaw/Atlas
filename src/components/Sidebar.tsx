@@ -1,5 +1,6 @@
+import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import type { DocFile } from "../types";
+import type { DocFile, DocGroup } from "../types";
 import AtlasLogo from "./AtlasLogo";
 import ShinyText from "./ShinyText";
 import SpotlightCard from "./SpotlightCard";
@@ -8,13 +9,68 @@ import { useTheme } from "../context/ThemeContext";
 import "./Sidebar.css";
 
 interface Props {
-  files: DocFile[];
+  groups: DocGroup[];
   query: string;
   setQuery: (q: string) => void;
   results: { file: DocFile; excerpt: string }[];
 }
 
-export default function Sidebar({ files, query, setQuery, results }: Props) {
+function FileLink({ f }: { f: DocFile }) {
+  return (
+    <NavLink
+      to={`/doc/${f.slug}`}
+      className={({ isActive }) => `sidebar-link${isActive ? " active" : ""}`}
+    >
+      {({ isActive }) => (
+        <SpotlightCard
+          className="sidebar-link-inner"
+          spotColor={isActive ? "rgba(66,133,244,0.1)" : "rgba(255,255,255,0.04)"}
+        >
+          <svg className="sidebar-link-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+          </svg>
+          <span className="sidebar-link-label">{f.label}</span>
+          {f.tags.length > 0 && (
+            <span className="sidebar-link-tag">{f.tags[0]}</span>
+          )}
+        </SpotlightCard>
+      )}
+    </NavLink>
+  );
+}
+
+function GroupSection({ group }: { group: DocGroup }) {
+  const [open, setOpen] = useState(false);
+  const isFolder = group.name !== "";
+
+  return (
+    <div className="sidebar-group">
+      {isFolder ? (
+        <button className="sidebar-group-header" onClick={() => setOpen((o) => !o)}>
+          <svg className={`sidebar-group-chevron${open ? " open" : ""}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <polyline points="9 18 15 12 9 6"/>
+          </svg>
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/>
+          </svg>
+          <span>{group.label}</span>
+          <span className="sidebar-group-count">{group.files.length}</span>
+        </button>
+      ) : (
+        <p className="sidebar-section-label">{group.label}</p>
+      )}
+
+      {open && (
+        <div className={isFolder ? "sidebar-group-files" : ""}>
+          {group.files.map((f) => <FileLink key={f.slug} f={f} />)}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function Sidebar({ groups, query, setQuery, results }: Props) {
   const { theme, toggle } = useTheme();
 
   return (
@@ -49,27 +105,7 @@ export default function Sidebar({ files, query, setQuery, results }: Props) {
       </div>
 
       <nav className="sidebar-nav">
-        <p className="sidebar-section-label">Documents</p>
-        {files.map((f) => (
-          <NavLink
-            key={f.slug}
-            to={`/doc/${f.slug}`}
-            className={({ isActive }) => `sidebar-link${isActive ? " active" : ""}`}
-          >
-            {({ isActive }) => (
-              <SpotlightCard
-                className="sidebar-link-inner"
-                spotColor={isActive ? "rgba(66,133,244,0.1)" : "rgba(255,255,255,0.04)"}
-              >
-                <svg className="sidebar-link-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-                  <polyline points="14 2 14 8 20 8"/>
-                </svg>
-                <span>{f.label}</span>
-              </SpotlightCard>
-            )}
-          </NavLink>
-        ))}
+        {groups.map((g) => <GroupSection key={g.name || "__root__"} group={g} />)}
       </nav>
 
       <div className="sidebar-footer">

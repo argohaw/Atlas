@@ -6,9 +6,16 @@ import rehypeSlug from "rehype-slug";
 import { useTheme } from "../context/ThemeContext";
 import "./MarkdownViewer.css";
 
-interface Props { slug: string; }
+interface Props {
+  slug: string;
+  tags?: string[];
+}
 
-export default function MarkdownViewer({ slug }: Props) {
+function stripFrontmatter(content: string): string {
+  return content.replace(/\r\n/g, "\n").replace(/^---\n[\s\S]*?\n---\n?/, "");
+}
+
+export default function MarkdownViewer({ slug, tags = [] }: Props) {
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -19,7 +26,7 @@ export default function MarkdownViewer({ slug }: Props) {
     setError(false);
     fetch(`${import.meta.env.BASE_URL}files/${slug}.md`)
       .then((r) => { if (!r.ok) throw new Error(); return r.text(); })
-      .then(setContent)
+      .then((text) => setContent(stripFrontmatter(text)))
       .catch(() => setError(true))
       .finally(() => setLoading(false));
   }, [slug]);
@@ -29,6 +36,13 @@ export default function MarkdownViewer({ slug }: Props) {
 
   return (
     <article className="markdown-body" data-theme-mode={theme}>
+      {tags.length > 0 && (
+        <div className="doc-tags">
+          {tags.map((tag) => (
+            <span key={tag} className="doc-tag">{tag}</span>
+          ))}
+        </div>
+      )}
       <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeHighlight, rehypeSlug]}>
         {content}
       </ReactMarkdown>

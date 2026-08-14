@@ -21,6 +21,34 @@
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* ── Doc Tags ─────────────────────────────────────────────── */
+.doc-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 20px;
+}
+
+.doc-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  background: var(--tag-bg);
+  color: var(--tag-color);
+  border: 1px solid var(--tag-border);
+  transition: background 0.15s, transform 0.15s;
+  cursor: default;
+}
+
+.doc-tag:hover {
+  transform: translateY(-1px);
+  background: var(--tag-bg-hover);
+}
+
 /* ── Markdown Body ─────────────────────────────────────────── */
 .markdown-body {
   max-width: 800px;

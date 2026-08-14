@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { DocFile } from "../types";
 
 interface SearchResult {
@@ -11,20 +11,15 @@ const cache = new Map<string, string>();
 export function useSearch(files: DocFile[]) {
   const [query, setQuery] = useState("");
   const [index, setIndex] = useState<Map<string, string>>(new Map());
-  const loaded = useRef(false);
 
   useEffect(() => {
-    if (loaded.current || files.length === 0) return;
-    loaded.current = true;
+    if (files.length === 0) return;
     Promise.all(
       files.map((f) => {
         if (cache.has(f.slug)) return Promise.resolve([f.slug, cache.get(f.slug)!] as const);
         return fetch(`${import.meta.env.BASE_URL}files/${f.slug}.md`)
           .then((r) => r.text())
-          .then((text) => {
-            cache.set(f.slug, text);
-            return [f.slug, text] as const;
-          });
+          .then((text) => { cache.set(f.slug, text); return [f.slug, text] as const; });
       })
     ).then((entries) => setIndex(new Map(entries)));
   }, [files]);
@@ -35,7 +30,12 @@ export function useSearch(files: DocFile[]) {
     return files
       .filter((f) => {
         const content = index.get(f.slug) ?? "";
-        return f.label.toLowerCase().includes(q) || content.toLowerCase().includes(q);
+        return (
+          f.label.toLowerCase().includes(q) ||
+          f.tags.some((t) => t.toLowerCase().includes(q)) ||
+          f.group.toLowerCase().includes(q) ||
+          content.toLowerCase().includes(q)
+        );
       })
       .map((f) => {
         const content = index.get(f.slug) ?? "";
@@ -43,7 +43,7 @@ export function useSearch(files: DocFile[]) {
         const excerpt =
           idx !== -1
             ? "…" + content.slice(Math.max(0, idx - 40), idx + 80).replace(/\n/g, " ") + "…"
-            : f.label;
+            : f.tags.length ? `Tags: ${f.tags.join(", ")}` : f.label;
         return { file: f, excerpt };
       })
       .slice(0, 8);

@@ -51,7 +51,9 @@
 
   --logo-text:        #F0EDE6;
   --tag-bg:           rgba(0,245,160,0.08);
+  --tag-bg-hover:     rgba(0,245,160,0.14);
   --tag-color:        var(--neon-green);
+  --tag-border:       rgba(0,245,160,0.2);
 
   scrollbar-color: #2a2a2a transparent;
 }
@@ -86,7 +88,9 @@
 
   --logo-text:        #1A1A1A;
   --tag-bg:           rgba(26,115,232,0.08);
+  --tag-bg-hover:     rgba(26,115,232,0.14);
   --tag-color:        var(--accent-blue);
+  --tag-border:       rgba(26,115,232,0.2);
 
   scrollbar-color: #D0C8BC transparent;
 }
