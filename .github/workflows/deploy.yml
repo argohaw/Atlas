@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -32,3 +35,33 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+
+      - name: Bump version and tag
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Read current version from package.json
+          CURRENT=$(node -p "require('./package.json').version")
+
+          # Auto-bump patch: 1.0.0 → 1.0.1
+          NEW=$(node -p "
+            const [major, minor, patch] = '$CURRENT'.split('.').map(Number);
+            \`\${major}.\${minor}.\${patch + 1}\`
+          ")
+
+          # Skip if this commit was already a version bump (avoid infinite loop)
+          LAST_MSG=$(git log -1 --pretty=%s)
+          if echo "$LAST_MSG" | grep -q "^chore: release v"; then
+            echo "Already a release commit — skipping bump."
+            exit 0
+          fi
+
+          # Update package.json
+          npm version $NEW --no-git-tag-version
+
+          # Commit + tag
+          git add package.json
+          git commit -m "chore: release v$NEW"
+          git tag "v$NEW"
+          git push origin main --follow-tags

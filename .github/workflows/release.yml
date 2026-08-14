@@ -1,0 +1,50 @@
+name: Create GitHub Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Generate release notes
+        id: notes
+        run: |
+          # Get the previous tag
+          PREV_TAG=$(git tag --sort=-version:refname | sed -n '2p')
+          CURR_TAG=${GITHUB_REF_NAME}
+
+          echo "## What's Changed" > notes.md
+          echo "" >> notes.md
+
+          if [ -z "$PREV_TAG" ]; then
+            echo "🎉 Initial release of Atlas — a fast, beautiful Markdown viewer." >> notes.md
+          else
+            # List commits between previous and current tag
+            git log ${PREV_TAG}..${CURR_TAG} \
+              --pretty=format:"- %s ([%h](https://github.com/${{ github.repository }}/commit/%H))" \
+              --no-merges >> notes.md
+          fi
+
+          echo "" >> notes.md
+          echo "---" >> notes.md
+          echo "**Full Changelog:** https://github.com/${{ github.repository }}/compare/${PREV_TAG}...${CURR_TAG}" >> notes.md
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.ref_name }}
+          name: Atlas ${{ github.ref_name }}
+          body_path: notes.md
+          draft: false
+          prerelease: false
