@@ -109,7 +109,7 @@ export default function Sidebar({ groups, query, setQuery, results }: Props) {
       </nav>
 
       <div className="sidebar-footer">
-        <span className="sidebar-footer-text">Atlas v1.0</span>
+        <span className="sidebar-footer-text">Atlas {__APP_VERSION__}</span>
       </div>
     </aside>
   );
