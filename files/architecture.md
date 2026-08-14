@@ -1,3 +1,6 @@
+---
+tags: [architecture, technical]
+---
 # Architecture Overview
 
 This document describes the technical architecture of the Atlas markdown viewer.

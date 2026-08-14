@@ -1,7 +1,519 @@
 [
-  "01-DSA-Plan.md",
-  "architecture.md",
-  "getting-started.md",
-  "markdown-cheatsheet.md",
-  "release-notes.md"
+  {
+    "name": "architecture.md",
+    "slug": "architecture",
+    "group": "",
+    "tags": [
+      "architecture",
+      "technical"
+    ]
+  },
+  {
+    "name": "01-DSA-Plan.md",
+    "slug": "dsa/01-DSA-Plan",
+    "group": "dsa",
+    "tags": [
+      "dsa",
+      "interview",
+      "amazon"
+    ]
+  },
+  {
+    "name": "02-Pattern-Guide.md",
+    "slug": "dsa/02-Pattern-Guide",
+    "group": "dsa",
+    "tags": [
+      "dsa",
+      "patterns",
+      "reference"
+    ]
+  },
+  {
+    "name": "03-LLD-Plan.md",
+    "slug": "dsa/03-LLD-Plan",
+    "group": "dsa",
+    "tags": [
+      "lld",
+      "patterns",
+      "reference"
+    ]
+  },
+  {
+    "name": "04-HLD-Plan.md",
+    "slug": "dsa/04-HLD-Plan",
+    "group": "dsa",
+    "tags": [
+      "hld",
+      "system-design",
+      "interview"
+    ]
+  },
+  {
+    "name": "getting-started.md",
+    "slug": "getting-started",
+    "group": "",
+    "tags": [
+      "guide",
+      "setup"
+    ]
+  },
+  {
+    "name": "01-fundamentals.md",
+    "slug": "hld-concepts/01-fundamentals",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "fundamentals",
+      "tradeoffs",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "02-data-storage.md",
+    "slug": "hld-concepts/02-data-storage",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "data-storage",
+      "database",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "03-communication-apis.md",
+    "slug": "hld-concepts/03-communication-apis",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "networking",
+      "communication",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "04-messaging-async.md",
+    "slug": "hld-concepts/04-messaging-async",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "messaging",
+      "async",
+      "patterns",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "05-performance-caching.md",
+    "slug": "hld-concepts/05-performance-caching",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "performance",
+      "caching",
+      "cdn",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "06-reliability-distributed.md",
+    "slug": "hld-concepts/06-reliability-distributed",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "reliability",
+      "distributed-systems",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "07-security.md",
+    "slug": "hld-concepts/07-security",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "security",
+      "authentication",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "08-observability.md",
+    "slug": "hld-concepts/08-observability",
+    "group": "hld-concepts",
+    "tags": [
+      "hld",
+      "observability",
+      "monitoring",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "01-google-drive.md",
+    "slug": "lld-advanced/01-google-drive",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "google-drive",
+      "file-sync"
+    ]
+  },
+  {
+    "name": "02-whatsapp.md",
+    "slug": "lld-advanced/02-whatsapp",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "whatsapp",
+      "messaging"
+    ]
+  },
+  {
+    "name": "03-payment-system.md",
+    "slug": "lld-advanced/03-payment-system",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "payment-system",
+      "fin-tech"
+    ]
+  },
+  {
+    "name": "04-video-conferencing.md",
+    "slug": "lld-advanced/04-video-conferencing",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "zoom",
+      "video-conferencing"
+    ]
+  },
+  {
+    "name": "05-aws-s3.md",
+    "slug": "lld-advanced/05-aws-s3",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "aws-s3",
+      "object-storage"
+    ]
+  },
+  {
+    "name": "06-collaborative-docs.md",
+    "slug": "lld-advanced/06-collaborative-docs",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "google-docs",
+      "collaboration"
+    ]
+  },
+  {
+    "name": "07-github.md",
+    "slug": "lld-advanced/07-github",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "github",
+      "version-control"
+    ]
+  },
+  {
+    "name": "08-leetcode.md",
+    "slug": "lld-advanced/08-leetcode",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "leetcode",
+      "code-judge"
+    ]
+  },
+  {
+    "name": "09-game-engine.md",
+    "slug": "lld-advanced/09-game-engine",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "game-engine",
+      "real-time"
+    ]
+  },
+  {
+    "name": "10-realtime-chat.md",
+    "slug": "lld-advanced/10-realtime-chat",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "real-time-chat",
+      "websocket"
+    ]
+  },
+  {
+    "name": "11-cryptocurrency-exchange.md",
+    "slug": "lld-advanced/11-cryptocurrency-exchange",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "crypto",
+      "exchange"
+    ]
+  },
+  {
+    "name": "12-gmail.md",
+    "slug": "lld-advanced/12-gmail",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "gmail",
+      "email"
+    ]
+  },
+  {
+    "name": "13-amazon-alexa.md",
+    "slug": "lld-advanced/13-amazon-alexa",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "alexa",
+      "voice-assistant"
+    ]
+  },
+  {
+    "name": "14-tinder.md",
+    "slug": "lld-advanced/14-tinder",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "tinder",
+      "dating-app"
+    ]
+  },
+  {
+    "name": "15-mentorship-platform.md",
+    "slug": "lld-advanced/15-mentorship-platform",
+    "group": "lld-advanced",
+    "tags": [
+      "lld",
+      "advanced",
+      "system-design",
+      "mentorship",
+      "scheduling"
+    ]
+  },
+  {
+    "name": "01-tic-tac-toe.md",
+    "slug": "lld-easy/01-tic-tac-toe",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "game-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "02-snake-and-ladder.md",
+    "slug": "lld-easy/02-snake-and-ladder",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "game-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "03-tetris.md",
+    "slug": "lld-easy/03-tetris",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "game-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "04-chess.md",
+    "slug": "lld-easy/04-chess",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "game-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "05-json-parser.md",
+    "slug": "lld-easy/05-json-parser",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "parsing",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "06-file-system.md",
+    "slug": "lld-easy/06-file-system",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "system-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "07-logging-library.md",
+    "slug": "lld-easy/07-logging-library",
+    "group": "lld-easy",
+    "tags": [
+      "lld",
+      "easy",
+      "library-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "00-INDEX.md",
+    "slug": "lld-intermediate/00-INDEX",
+    "group": "lld-intermediate",
+    "tags": [
+      "index",
+      "lld-intermediate",
+      "lld-advanced"
+    ]
+  },
+  {
+    "name": "01-download-manager.md",
+    "slug": "lld-intermediate/01-download-manager",
+    "group": "lld-intermediate",
+    "tags": [
+      "lld",
+      "intermediate",
+      "system-design",
+      "amazon-interview"
+    ]
+  },
+  {
+    "name": "01-rate-limiter.md",
+    "slug": "lld-intermediate/01-rate-limiter",
+    "group": "lld-intermediate",
+    "tags": [
+      "lld",
+      "intermediate",
+      "distributed-systems",
+      "amazon-interview",
+      "google-interview"
+    ]
+  },
+  {
+    "name": "02-thread-pool.md",
+    "slug": "lld-intermediate/02-thread-pool",
+    "group": "lld-intermediate",
+    "tags": [
+      "lld",
+      "intermediate",
+      "concurrency",
+      "amazon-interview",
+      "google-interview",
+      "system-design"
+    ]
+  },
+  {
+    "name": "03-internet-download-manager.md",
+    "slug": "lld-intermediate/03-internet-download-manager",
+    "group": "lld-intermediate",
+    "tags": [
+      "lld",
+      "intermediate",
+      "system-design",
+      "amazon-interview",
+      "adobe-interview"
+    ]
+  },
+  {
+    "name": "04-uber.md",
+    "slug": "lld-intermediate/04-uber",
+    "group": "lld-intermediate",
+    "tags": [
+      "lld",
+      "intermediate",
+      "system-design",
+      "amazon-interview",
+      "google-interview",
+      "uber-interview"
+    ]
+  },
+  {
+    "name": "05-oyo-airbnb.md",
+    "slug": "lld-intermediate/05-oyo-airbnb",
+    "group": "lld-intermediate",
+    "tags": [
+      "lld",
+      "intermediate",
+      "system-design",
+      "airbnb-interview",
+      "booking-system"
+    ]
+  },
+  {
+    "name": "WORK-COMPLETED.md",
+    "slug": "lld-intermediate/WORK-COMPLETED",
+    "group": "lld-intermediate",
+    "tags": [
+      "summary",
+      "system-design",
+      "lld",
+      "intermediate"
+    ]
+  },
+  {
+    "name": "markdown-cheatsheet.md",
+    "slug": "markdown-cheatsheet",
+    "group": "",
+    "tags": [
+      "reference",
+      "markdown"
+    ]
+  },
+  {
+    "name": "release-notes.md",
+    "slug": "release-notes",
+    "group": "",
+    "tags": [
+      "changelog",
+      "releases"
+    ]
+  }
 ]

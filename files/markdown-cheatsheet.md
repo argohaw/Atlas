@@ -1,3 +1,6 @@
+---
+tags: [reference, markdown]
+---
 # Markdown Cheatsheet
 
 A complete reference for all supported markdown syntax in Atlas.
