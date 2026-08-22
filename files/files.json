@@ -1,5 +1,77 @@
 [
   {
+    "name": "01-Java.md",
+    "slug": "AA Interview Prep/01-Java",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "02-Spring-SpringBoot.md",
+    "slug": "AA Interview Prep/02-Spring-SpringBoot",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "03-Rest api, security JPA.md",
+    "slug": "AA Interview Prep/03-Rest api, security JPA",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "04-Microservices-DistributedSystems.md",
+    "slug": "AA Interview Prep/04-Microservices-DistributedSystems",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "05-Apache-kafka.md",
+    "slug": "AA Interview Prep/05-Apache-kafka",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "06-AWS.md",
+    "slug": "AA Interview Prep/06-AWS",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "07-Docker.md",
+    "slug": "AA Interview Prep/07-Docker",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "09-Kubernetes.md",
+    "slug": "AA Interview Prep/09-Kubernetes",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "10-End-to-end-cloud-native-chat.md",
+    "slug": "AA Interview Prep/10-End-to-end-cloud-native-chat",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "11-Production-lvl-troubleshooting.md",
+    "slug": "AA Interview Prep/11-Production-lvl-troubleshooting",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "12-Rapid-fire Interview questions.md",
+    "slug": "AA Interview Prep/12-Rapid-fire Interview questions",
+    "group": "AA Interview Prep",
+    "tags": []
+  },
+  {
+    "name": "Core-Java-1.md",
+    "slug": "Java/Core-Java-1",
+    "group": "Java",
+    "tags": []
+  },
+  {
     "name": "architecture.md",
     "slug": "architecture",
     "group": "",
